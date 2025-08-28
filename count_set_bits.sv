@@ -27,20 +27,12 @@ module testbench;
 endmodule
 
 /*
-the given number is = 0(0)
-The total number of 1's is = 0
-the given number is = 1(1)
-The total number of 1's is = 1
-the given number is = 2(10)
-The total number of 1's is = 1
-the given number is = 4294967295(11111111111111111111111111111111)
-The total number of 1's is = 32
-the given number is = 7(111)
-The total number of 1's is = 3
-the given number is = 64(1000000)
-The total number of 1's is = 1
-the given number is = 16(10000)
-The total number of 1's is = 1
-the given number is = 15(1111)
-The total number of 1's is = 4
+The total number of 1's is = 0 for number = 0
+The total number of 1's is = 1 for number = 1
+The total number of 1's is = 1 for number = 2
+The total number of 1's is = 32 for number = 4294967295
+The total number of 1's is = 3 for number = 7
+The total number of 1's is = 1 for number = 64
+The total number of 1's is = 1 for number = 16
+The total number of 1's is = 4 for number = 15
 */
