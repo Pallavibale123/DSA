@@ -1,15 +1,14 @@
 module testbench;
   //automatic makes Each call gets its own copy of local variables. Local variables are stack-allocated and disappear when the function call ends
   function automatic integer count_setbits(input int unsigned n);
-    integer max_count;
+
     integer count = 0;
-    $display("the given number is = %0d(%0b)", n,n);
     while (n != 0)begin
       n = n & (n-1);
       count = count + 1;
     end
-    max_count = count;
-    $display("The total number of 1's is = %0d", max_count);
+    return count;
+    
   endfunction
   
   initial begin
@@ -20,6 +19,7 @@ module testbench;
     foreach (testing[i])begin
       num = testing[i];
       result = count_setbits(num);
+      $display("The total number of 1's is = %0d for number = %0d", result, num);
     end
     $finish;
   end
