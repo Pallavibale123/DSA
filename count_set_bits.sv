@@ -1,8 +1,8 @@
 module testbench;
   //automatic makes Each call gets its own copy of local variables. Local variables are stack-allocated and disappear when the function call ends
-  function automatic integer count_setbits(input int unsigned n);
+  function automatic int count_setbits(input int unsigned n);
 
-    integer count = 0;
+    int count = 0;
     while (n != 0)begin
       n = n & (n-1);
       count = count + 1;
