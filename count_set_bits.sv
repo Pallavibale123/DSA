@@ -1,3 +1,4 @@
+//Q1. Count number of set bits for integer.
 module testbench;
   //automatic makes Each call gets its own copy of local variables. Local variables are stack-allocated and disappear when the function call ends
   function automatic int count_setbits(input int unsigned n);
@@ -36,3 +37,27 @@ The total number of 1's is = 1 for number = 64
 The total number of 1's is = 1 for number = 16
 The total number of 1's is = 4 for number = 15
 */
+
+//Q2. Count number of set bits in an entire array
+module testbench;
+  
+  function int count_ones(input int unsigned n);
+    int count = 0;
+    while (n != 0)begin
+      n = (n & (n - 1));
+      count = count + 1;
+    end
+    return count;
+  endfunction
+  
+  initial begin
+    int unsigned testing[] = '{0, 3, 7, 32};
+    int unsigned result, num;
+    foreach(testing[i])begin
+      num = testing[i];
+      result = count_ones(num);
+      $display("count of ones in number %0d is %0d", num, result);	
+    end
+    $finish;
+  end
+endmodule
