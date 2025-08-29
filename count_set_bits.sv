@@ -106,3 +106,39 @@ count of ones from 1 to the number 3 is 4
 count of ones from 1 to the number 7 is 12
 count of ones from 1 to the number 32 is 81
 */
+
+//Q4. Count number of set bits from a Range num1 to num 2
+module testbench;
+
+  function automatic int count_ones_in_range(input int unsigned num1, input int unsigned num2);
+    int total = 0;
+    int unsigned i;
+    for (i = num1; i <= num2; i++) begin
+      int unsigned temp = i;
+      while (temp != 0) begin
+        temp = temp & (temp - 1);
+        total++;
+      end
+    end
+    return total;
+  endfunction
+
+  initial begin
+    int unsigned testing[][2] = '{ '{0,0}, '{1,1}, '{5,7} };
+    int result;
+    
+    foreach(testing[i]) begin
+      result = count_ones_in_range(testing[i][0], testing[i][1]);
+      $display("The range is %0d to %0d and total count of ones is %0d",
+                testing[i][0], testing[i][1], result);
+    end
+    $finish;
+  end
+endmodule
+
+
+/* 
+The range is 0 to 0 and total count of ones is 0
+The range is 1 to 1 and total count of ones is 1
+The range is 5 to 7 and total count of ones is 7
+*/
