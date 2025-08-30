@@ -1,0 +1,26 @@
+For count number of set bits:
+while (n != 0) begin
+    n = n & (n-1);
+    count = count + 1;
+  end
+
+Each iteration removes the lowest set bit from n.
+So the number of iterations = number of set bits (k) in n.
+
+Time Complexity
+Worst case: all bits set (for 32-bit unsigned int → n = 32'hFFFFFFFF).
+Then k = 32, so loop runs 32 times.
+Best case: n = 0 → loop runs 0 times.
+General case: loop runs k times, where k = number of set bits.
+So:
+Time complexity per number: O(k)
+Since k ≤ 32 (for 32-bit int), this is bounded by O(32) ≈ O(1).
+For dataset of size D, total complexity: O(D * k) → but practically O(D) since k is capped at 32.
+
+Space Complexity
+count, num, result are just integers → constant memory.
+No auxiliary data structures.
+So space complexity = O(1).
+
+Time Complexity: O(k) per number, bounded by O(1) for fixed-width integers (32-bit).
+Space Complexity: O(1).
