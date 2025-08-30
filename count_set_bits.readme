@@ -24,3 +24,15 @@ So space complexity = O(1).
 
 Time Complexity: O(k) per number, bounded by O(1) for fixed-width integers (32-bit).
 Space Complexity: O(1).
+
+Summary Table
+Module	Time Complexity	Space Complexity
+Q2 (single array element)	O(k) per number → O(D) practically	O(1)
+Q3 (1 → num)	O(num * log(num)) worst-case	O(1)
+Q4 (range num1 → num2)	O(R) practically (sum of set bits)	O(1)
+Q5 (most frequent)	O(D)	O(1)
+Notes:
+k = set bits in a number
+D = size of dataset / array
+R = range size (num2 - num1 + 1)
+All complexities are practically constant per 32-bit number due to fixed-width integers.
