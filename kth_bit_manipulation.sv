@@ -1,7 +1,7 @@
 //Q1. Set the k-th bit of a number.
 
 //Time complexity: O(1) per call, O(D) overall for dataset of size D.
-Space complexity: O(1).
+//Space complexity: O(1).
 
 module testbench;
   function automatic int set_bit(input int unsigned n, input int unsigned k);
