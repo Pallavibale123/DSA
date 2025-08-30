@@ -23,3 +23,26 @@ module testbench;
     end
   end
 endmodule
+
+//Q2. Clear the k-th bit of a number.
+
+module testbench;
+  function automatic int clear_bit(input int unsigned n, input int k);
+    if (k < 0 || k >= 32)begin
+      return 0;
+    end else begin
+    return n & (~(1 << k));
+    end
+  endfunction
+  
+  initial begin
+    int unsigned data[][2] = '{'{0,0},'{32'hFFFFFFFF, 31},'{32'hFFFFFFFF, 0},'{5,0},'{32'h16, 8}};
+    int unsigned result;
+    foreach(data[i])begin
+      result = clear_bit(data[i][0], data[i][1]);
+      $display("The number %0d (%0b) and the kth bit to clear %0d (%0b)",data[i][0], data[i][0], data[i][1], data[i][1]);
+      $display("The final value is %0d (%0b)", result, result);
+    end
+    $finish;
+  end
+endmodule
