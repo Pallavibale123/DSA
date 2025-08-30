@@ -67,3 +67,28 @@ module testbench;
     end
   end
 endmodule
+
+//Q4. Check the k-th bit of a number.
+
+module testbench;
+  function automatic int check_bit(input int unsigned n, input int k);
+    if ( k < 0 || k >= 32)begin
+      return -1;
+    end
+    else 
+      return (n  & (32'h1 << k)) ? 1: 0;
+  endfunction
+  
+  initial begin
+    int unsigned data[][2] = '{'{0,0},'{32'hFFFFFFFF,31},'{-4,2},'{16,5}}; 
+    int unsigned result;
+    foreach (data[i])begin
+      result = check_bit(data[i][0], data[i][1]);
+      if (result == -1)begin
+        $display(" The number bit is invalid");
+      end
+      $display(" The number is %0d (%0b) and the bit to check is %0d", data[i][0],data[i][0], data[i][1]);
+      $display(" The result bit is %0b", result);
+    end
+  end
+endmodule
