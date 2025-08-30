@@ -46,3 +46,24 @@ module testbench;
     $finish;
   end
 endmodule
+
+//Q3. Toggle the k-th bit of a number.
+
+module testbench;
+  function automatic int toggle_bit(input int unsigned n, input int k);
+    if(k < 0 || k >= 32)begin
+      return n;
+    end
+    return n ^ (1<<k); // assume k starts from index 0
+  endfunction
+  
+  initial begin
+    int unsigned data[][2] = '{'{0,0},'{32'hFFFFFFFF,0},'{32'hFFFFFFFF,31},'{-4,2}};
+    int unsigned result;
+    foreach(data[i])begin
+      result = toggle_bit(data[i][0], data[i][1]);
+      $display("The number is %0d(%0b) and the kth bit is %0d", data[i][0],data[i][0], data[i][1]);
+      $display(" The final value is %0d(%0b)",result, result);
+    end
+  end
+endmodule
