@@ -142,3 +142,55 @@ The range is 0 to 0 and total count of ones is 0
 The range is 1 to 1 and total count of ones is 1
 The range is 5 to 7 and total count of ones is 7
 */
+
+//Q5. Find most frequent number of set bits in a dataset.
+module testbench;
+  function automatic int max_occurance_of_ones(input int unsigned n);
+    int count = 0;
+    while (n != 0)begin
+      n = n & (n - 1);
+      count += 1;
+    end
+    return count;
+  endfunction
+  
+  initial begin
+    int max_count = 0;
+    int freq[32:0];
+    int unsigned data[] = '{0, 1, 2, 3, 4, 5, 7,7,7,7};
+    int cnt;
+    int common_cnt;
+    int num;
+    foreach (data[i])begin
+      num = data[i];
+      cnt = max_occurance_of_ones(num);
+      $display("The total count for number %0d is = %0d", num, cnt);
+      freq[cnt] += 1;
+      if (freq[cnt] > max_count)begin
+        max_count = freq[cnt];
+        common_cnt = cnt;
+        $display("The common occurance of ones in the data set till this point is %0d",common_cnt);
+      end
+    end
+    $display("The common occurance of ones in the data set is %0d",common_cnt);
+    $finish;
+  end
+endmodule
+
+/*
+The total count for number 0 is = 0
+The common occurance of ones in the data set till this point is 0
+The total count for number 1 is = 1
+The total count for number 2 is = 1
+The common occurance of ones in the data set till this point is 1
+The total count for number 3 is = 2
+The total count for number 4 is = 1
+The common occurance of ones in the data set till this point is 1
+The total count for number 5 is = 2
+The total count for number 7 is = 3
+The total count for number 7 is = 3
+The total count for number 7 is = 3
+The total count for number 7 is = 3
+The common occurance of ones in the data set till this point is 3
+The common occurance of ones in the data set is 3
+*/
