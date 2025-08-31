@@ -43,3 +43,15 @@ module testbench;
     end
   end
 endmodule
+
+/* 
+The next power of 2 for the number 0 is 1
+ The next power of 2 for the number 1 is 1
+ The next power of 2 for the number 2 is 2
+ The next power of 2 for the number 3 is 4
+ The next power of 2 for the number 4 is 4
+ The next power of 2 for the number 7 is 8
+ The next power of 2 for the number 16 is 16
+ The next power of 2 for the number 16777215 is 16777216
+ The next power of 2 for the number 4294967291 is 0
+*/
