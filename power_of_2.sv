@@ -55,3 +55,32 @@ The next power of 2 for the number 0 is 1
  The next power of 2 for the number 16777215 is 16777216
  The next power of 2 for the number 4294967291 is 0
 */
+
+//Q3. Count how many powers of 2 exist in an array.
+
+module testbench;
+  function int count_power(input int unsigned n);
+    return ((n > 0) & (n & (n-1)) == 0) ? 1 : 0;
+  endfunction
+  
+  initial begin
+    int unsigned data[] ='{0, 2, 1, 3, 4, 15, 32'hFFFFFF};
+    int unsigned result;
+    int count = 0;
+    foreach (data[i])begin
+      result = count_power(data[i]);
+      if(result == 1) count += 1;
+      $display("The total count of numbers which are power of 2 are %0d", count);
+    end
+  end
+endmodule
+
+/*
+The total count of numbers which are power of 2 are 0
+The total count of numbers which are power of 2 are 1
+The total count of numbers which are power of 2 are 2
+The total count of numbers which are power of 2 are 2
+The total count of numbers which are power of 2 are 3
+The total count of numbers which are power of 2 are 3
+The total count of numbers which are power of 2 are 3
+*/
