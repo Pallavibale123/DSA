@@ -9,7 +9,7 @@ module testbench;
     int i =0;
     int j = str.len() - 1;
 
-    while(i < j)begin
+    while(i < j)begin //Tip: when using two pointer use while loop
       temp = str[i];
       str[i] = str[j];
       str[j] = temp;
@@ -17,8 +17,7 @@ module testbench;
       j -= 1;
     end
   endtask
-  
-  
+
   initial begin
     string s1 = "Hello";
     reverse_string(s1);
