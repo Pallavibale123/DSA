@@ -46,3 +46,26 @@ endmodule
       $display("arr4 alternates ? %0b", alternate(arr4, arr4.size()));
     end
   endmodule
+
+//Q3. Swap two numbers using XOR
+module testbench;
+function automatic int swap(input int a, input int b, output int swap_a, output int swap_b);
+  int temp;
+  if (a != b)begin
+  temp = a^b;
+  a = a ^ temp;
+  b = b ^ temp;
+  end
+  swap_a = a;
+  swap_b = b;
+endfunction
+  initial begin
+    int swapped_a, swapped_b;
+    int signed dataset[][2] ='{'{0,1},'{1,1},'{-1,-1},'{-1,9}, '{2,8}};
+    foreach(dataset[i])begin
+      swap(dataset[i][0],dataset[i][1],swapped_a, swapped_b);
+      $display("The numbers to swap are a= %0d and b= %0d after swapping a = %0d and b = %0d",dataset[i][0],dataset[i][1],swapped_a, swapped_b);
+    end
+    $finish;
+  end
+endmodule
