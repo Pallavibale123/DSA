@@ -69,3 +69,10 @@ endfunction
     $finish;
   end
 endmodule
+/*
+The numbers to swap are a= 0 and b= 1 after swapping a = 1 and b = 0
+The numbers to swap are a= 1 and b= 1 after swapping a = 1 and b = 1
+The numbers to swap are a= -1 and b= -1 after swapping a = -1 and b = -1
+The numbers to swap are a= -1 and b= 9 after swapping a = 9 and b = -1
+The numbers to swap are a= 2 and b= 8 after swapping a = 8 and b = 2
+*/
