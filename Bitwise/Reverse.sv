@@ -1,4 +1,22 @@
-
+//Q1. Reverse integer
+module testbench;
+function automatic int reverse(input int n);
+  int rev = 0;
+  for(int i = 0; i <= 31; i++)begin
+    rev = (rev << 1) | (n & 1);
+    n = n >> 1;
+  end
+  return rev;
+endfunction 
+  
+  initial begin
+    int num = 32'hAABBCC11;
+    int result;
+    result = reverse(num);
+    $display(" The num %0h is reverse = %0h", num, result);
+    $finish;
+  end
+endmodule
 
 //Q2. Reverse bits within each byte instead of entire number
 
@@ -23,6 +41,33 @@ module testbench;
     int result;
     result = reverse_byte(dataset);
     $display("The current data is %0h and the reversed data is %0h",dataset, result);
+    $finish;
+  end
+endmodule
+
+//Q3. Reverse bits and check if the bit pattern is a palindrome.
+module testbench;
+  function automatic int unsigned reverse(input int unsigned n);
+  int rev = 0;
+  for(int i = 0; i < 32; i++)begin
+    rev = (rev << 1) | (n & 1);
+    n = n >> 1;
+  end
+  return rev;
+endfunction 
+  
+  function automatic int unsigned palindrome(input int unsigned n);
+    return (reverse(n)== n);
+  endfunction
+  
+  initial begin
+    int unsigned num = 32'b10000000000000000000000000000001;
+    int result;
+    result = palindrome(num);
+    if(result)
+      $display(" The num %0h is palindrome", num);
+    else 
+      $display(" The num %0h is not palindrome", num);
     $finish;
   end
 endmodule
