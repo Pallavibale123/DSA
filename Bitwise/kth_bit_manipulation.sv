@@ -92,3 +92,25 @@ module testbench;
     end
   end
 endmodule
+
+//Q5.Isolate the rightmost set bit of a number
+
+//Q6.Find the position of the rightmost set bit.
+module testbench;
+  function automatic int position(input int n);
+    int pos =0;
+    while ((n & 1) == 0)begin
+      n >>= 1;
+      pos += 1;
+    end
+    return pos;
+  endfunction
+  
+  initial begin
+    int  num = 32'h00100100;
+    int result;
+    result = position(num);
+    $display("The position of the first set bit is %0d", result);
+    $finish;
+  end
+endmodule
