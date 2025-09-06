@@ -43,3 +43,24 @@ module testbench;
     end
   end
 endmodule
+
+//Q3. Find position of first ‘1’ in a register
+module testbench;
+  function automatic int position_of_first_setbit(input int n);
+    if(n == 0) return -1;
+    for(int i = 0; i < 32; i++)begin
+      if((n >> i) & 1)begin
+      return i;
+      end 
+      end
+  endfunction
+  
+  initial begin
+    int data[] = '{0,1,3,4,32'hFFFFFFFE, 32'h80000000,255};
+    int result;
+    foreach (data[i])begin
+      result = position_of_first_setbit(data[i]);
+      $display(" The number %0d has first set bit at %0d", data[i], result);
+    end
+  end
+endmodule
