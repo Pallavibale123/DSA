@@ -66,3 +66,37 @@ module testbench;
     $display("%0p", a);
   end
 endmodule
+
+//Q4. Right Rotation by k in-place
+module testbench;
+task automatic reverse(ref int arr[], input int l, input int r);
+  int temp;
+  while (l < r)begin
+    temp = arr[l];
+    arr[l] = arr[r];
+    arr[r] = temp;
+    l += 1;
+    r -= 1;
+  end
+endtask
+
+task automatic right_rotate_inplace(ref int arr[], input int k);
+  int n = arr.size();
+  int r1, r2;
+  k = k % n;
+  
+  r1 = n-1;
+  r2 = k-1;
+  reverse(arr, 0, r1);
+  reverse(arr, 0, r2);
+  reverse(arr, k, r1);
+endtask
+
+initial begin
+    int a[] = '{1,2,3,4,4,5,6};
+    right_rotate_inplace(a, 3);
+    $display("%0p", a);
+  end
+endmodule
+
+
