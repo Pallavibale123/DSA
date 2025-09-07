@@ -35,3 +35,34 @@ endtask
     $display("rotated array is %0p", rotated);
   end
 endmodule
+
+//Q3. Left Rotation by k in-place
+module testbench;
+  task automatic reverse(ref int arr[], input int l, input int r);
+    int temp;
+    while(l < r)begin
+      temp = arr[l];
+      arr[l] = arr[r];
+      arr[r] = temp;
+      l += 1;
+      r -= 1;
+    end
+  endtask
+
+  task automatic left_rotate_inplace(ref int arr[], input int k);
+    int n = arr.size();
+    int r1, r2;
+    k = k % n;
+    r1 = k-1;
+    r2 = n-1;
+    reverse(arr, 0, r1);
+    reverse(arr, k, r2);
+    reverse(arr, 0, r2);
+  endtask
+  
+  initial begin
+    int a[] = '{1,2,3,4,4,5,6};
+    left_rotate_inplace(a, 3);
+    $display("%0p", a);
+  end
+endmodule
