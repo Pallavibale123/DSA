@@ -112,6 +112,14 @@ module testbench;
     return result;
   endfunction
   
+  /*
+7 x 4
+a values (doubles each step): 7, 14, 28, 56
+b values (binary):             100, 010, 001, 000
+Only the last step (LSB of b=1) contributes: result = 28
+
+  */
+  
   initial begin
     int unsigned a, b;
     int unsigned sum, product;
