@@ -86,6 +86,45 @@ The total count of numbers which are power of 2 are 3
 */
 
 //Q4. Check if a sum or product of numbers is power of 2.
+
+module testbench;
+  
+  function automatic int sum(input int a, b);
+    int carry;
+    while(b != 0)begin
+      carry = a & b;
+      a = a ^ b;
+      b = carry << 1;
+    end
+    return a;
+  endfunction
+  
+  function automatic int if_power(input int a, b);
+    int sum1, product1;
+    sum1 = sum(a,b);
+    product1 = product(a,b);  
+    return (((sum1 > 0) && ((sum1 & (sum1 - 1)) ==0 )) | (((product1 > 0) && ((product1 & (product1 - 1)) ==0 ))));
+  endfunction
+  
+  function automatic int product(input int a, b);
+    int result = 0;
+    while (b != 0)begin
+      if(b & 1) result = sum(result,a);
+      a = a << 1;
+      b = b >> 1;
+    end
+  endfunction
+
+  initial begin
+    int result;
+    result = if_power(3,7);
+    if(result) $display("the sum or product of numbers is power of 2");
+    $display("the sum or product of numbers is NOT power of 2");  
+  end
+  
+endmodule
+
+
 module testbench;
   function automatic int power_of_2(input int unsigned n);
     return ((n > 0) && ((n & (n-1)) == 0)) ? 1 : 0;
