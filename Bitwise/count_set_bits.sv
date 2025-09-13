@@ -194,3 +194,34 @@ The total count for number 7 is = 3
 The common occurance of ones in the data set till this point is 3
 The common occurance of ones in the data set is 3
 */
+
+module testbench;
+  function automatic int freq_count(input int a[]);
+    int freq[32];
+    int freq_count = 0;
+    int max_count = 0;
+    foreach(a[i])begin
+      int count = 0;
+      int n = a[i];
+      while (n != 0)begin
+        n = n & (n-1);
+        count += 1;
+      end
+      freq[count] += 1;
+    end
+    for(int i = 0; i < 32; i++)begin
+      if(max_count < freq[i])begin
+        max_count = freq[i];
+      freq_count = i;
+    end
+    end
+    return freq_count;
+  endfunction
+  
+  initial begin
+    int a[] = '{0,1,2,3,4,5,6,8,9,6,7,7,7,7,7,7,7};
+    int result;
+    result = freq_count(a);
+    $display("The freq of count  %0d is high", result);
+  end
+endmodule
