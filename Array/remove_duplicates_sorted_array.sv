@@ -1,3 +1,5 @@
+//assuming it is sorted and duplicate is adjacent
+
 module testbench;
 task automatic remove_duplicates(ref int a[]);
   int i = 0;
