@@ -1,3 +1,5 @@
+//Kadane's algo
+
 module testbench;
   task automatic max_sum(input int a[], output int max);
     int n = a.size();
